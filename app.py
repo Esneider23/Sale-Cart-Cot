@@ -15,8 +15,16 @@ server.config['MYSQL_DB'] = 'heroku_23edc9681868d22'
 mysql = MySQL(server)
 
 
-@server.route('/')
+@server.get('/')
 def index():
+    try:
+        return contraller.clear()
+    except Exception as error:
+        return page_not_found(error)
+
+
+@server.route('/show')
+def show():
     try:
         return contraller.show_car()
     except Exception as ex:

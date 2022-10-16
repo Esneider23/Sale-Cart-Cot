@@ -5,6 +5,11 @@ from logic.cart import Cart
 model = []
 
 
+def clear():
+    model.clear()
+    return jsonify({"Welcome": 'Welcome tu api car'})
+
+
 def show_car():
     data = [(i.idProduct, i.name, i.supName, i.price, i.motor, i.gearbox, i.security) for i in model]
     if data != 0:
