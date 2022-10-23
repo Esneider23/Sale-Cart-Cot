@@ -7,7 +7,7 @@ model = []
 
 def clear():
     model.clear()
-    return jsonify({"Welcome": 'Welcome tu api car', "model": model})
+    return jsonify({"Welcome": 'Welcome tu api car'})
 
 
 def show_car():
@@ -30,7 +30,7 @@ def into_shopcar(mysql, idProduct):
                    "from stock s inner join vehicle v on (s.name = v.id)"
                    "inner join supplier su on (s.supplier = su.idsupplier) where s.idstock = '{0}'".format(idProduct))
     data = cursor.fetchall()
-    if data != None:
+    if data is not None:
         for fila in data:
             c = Cart(idProduct=idProduct, name=fila[0], supName=fila[1], price=fila[2], motor=fila[3], gearbox=fila[4],
                      security=fila[5])
@@ -47,6 +47,3 @@ def price_total():
     for i in model:
         p = p + i.price
     return p
-
-
-
