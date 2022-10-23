@@ -7,7 +7,7 @@ model = []
 
 def clear():
     model.clear()
-    return jsonify({"Welcome": 'Welcome tu api car'}), model
+    return jsonify({"Welcome": 'Welcome tu api car', "model": model}),
 
 
 def show_car():
