@@ -16,7 +16,7 @@ mysql = MySQL(server)
 
 
 @server.get('/')
-async def index():
+def index():
     try:
         return contraller.clear()
     except Exception as error:
@@ -24,7 +24,7 @@ async def index():
 
 
 @server.route('/show')
-async def show():
+def show():
     try:
         return contraller.show_car()
     except Exception as ex:
@@ -32,7 +32,7 @@ async def show():
 
 
 @server.route('/shotcar')
-async def car():
+def car():
     try:
         return contraller.show_list()
     except Exception as ex:
@@ -40,7 +40,7 @@ async def car():
 
 
 @server.get('/shotcar/<id>')
-async def car_product(id):
+def car_product(id):
     try:
         return contraller.into_shopcar(mysql, id)
     except Exception as ex:
