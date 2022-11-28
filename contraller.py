@@ -3,6 +3,7 @@ from flask import jsonify, request
 from logic.cart import Cart
 
 model = []
+aux = []
 
 
 def clear():

@@ -1,10 +1,12 @@
 # we invoke the necessary libraries
 from flask import Flask, render_template,jsonify, request
-
+from flask_cors import CORS, cross_origin
 from flask_mysqldb import MySQL
 import contraller
 
 server = Flask(__name__)
+
+CORS(server)
 
 server.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
 server.config['MYSQL_USER'] = 'bee0e9755133d2'
@@ -15,6 +17,7 @@ server.config['MYSQL_DB'] = 'heroku_23edc9681868d22'
 mysql = MySQL(server)
 
 
+@cross_origin
 @server.get('/')
 def index():
     try:
@@ -23,6 +26,7 @@ def index():
         return page_not_found(error)
 
 
+@cross_origin
 @server.route('/show')
 def show():
     try:
@@ -31,7 +35,8 @@ def show():
         return page_not_found(ex)
 
 
-@server.route('/shotcar')
+@cross_origin
+@server.route('/shopcar')
 def car():
     try:
         return contraller.show_list()
@@ -39,12 +44,21 @@ def car():
         return page_not_found(ex)
 
 
-@server.get('/shotcar/<id>')
+@cross_origin
+@server.get('/shopcar/<id>')
 def car_product(id):
     try:
         return contraller.into_shopcar(mysql, id)
     except Exception as ex:
         return page_not_found(ex)
+
+
+# This function remove the cart by the ID
+@cross_origin
+@server.get('/del/<id>')
+def del_cart(id):
+    return contraller.delate_cart(id)
+    
 
 
 # A function is created to show when a page is not found.
