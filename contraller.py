@@ -14,7 +14,7 @@ def clear():
 def show_car():
     data = [(i.idProduct, i.name, i.supName, i.price, i.motor, i.gearbox, i.security) for i in model]
     if data != 0:
-        return jsonify({'number of products in shopping cart': len(data), 'total price': price_total()})
+        return jsonify({'number of products in shopping cart': len(data), 'total_price': price_total()})
     else:
         return jsonify({'messeger: "There are no data'})
 
@@ -22,7 +22,7 @@ def show_car():
 def show_list():
     data = [(i.idProduct, i.name, i.supName, i.price, i.motor, i.gearbox, i.security) for i in model]
     print(data)
-    return jsonify({'shopping cart': data, 'total price': price_total()})
+    return jsonify({'shopping_cart': data, 'total_price': price_total()})
 
 
 def into_shopcar(mysql, idProduct):
