@@ -14,7 +14,7 @@ def clear():
 def show_car():
     data = [(i.idProduct, i.name, i.supName, i.price, i.motor, i.gearbox, i.security) for i in model]
     if data != 0:
-        return jsonify({'number of products in shopping cart': len(data), 'total_price': price_total()})
+        return jsonify({'count': len(data), 'total_price': price_total()})
     else:
         return jsonify({'messeger: "There are no data'})
 
